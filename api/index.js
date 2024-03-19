@@ -7,6 +7,8 @@ import postRoutes from "./routes/post.route.js";
 import commentRoutes from "./routes/comment.route.js";
 import cookieParser from "cookie-parser";
 import path from "path";
+import http from "http";
+import { Server } from "socket.io";
 
 dotenv.config();
 
@@ -26,7 +28,16 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-app.listen(3000, () => {
+const server = http.createServer(app); // Create HTTP server
+
+const io = new Server(server); // Create Socket.IO server
+
+io.on("connection", (socket) => {
+  console.log("A client connected");
+  // Handle socket events here
+});
+
+server.listen(3000, () => {
   console.log("Server is running on port 3000!");
 });
 
