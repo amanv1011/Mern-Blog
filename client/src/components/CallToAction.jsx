@@ -8,12 +8,12 @@ export default function CallToAction() {
         <p className="text-gray-500 my-2">Checkout Below</p>
         <Button gradientDuoTone="purpleToPink" className="rounded-tl-xl rounded-bl-none">
           <a href="/search" target="_blank" rel="noopener noreferrer">
-          Begin your reading journey.
+            Begin your reading journey.
           </a>
         </Button>
       </div>
       <div className="p-7 flex-1">
-        <img src="https://bairesdev.mo.cloudinary.net/blog/2023/08/What-Is-JavaScript-Used-For.jpg" />
+        <img src="https://cdn.iview.abc.net.au/thumbs/i/X0_65fcb1bd0c9d3_3600.jpg" />
       </div>
     </div>
   );

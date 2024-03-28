@@ -6,13 +6,14 @@ export default function About() {
           <h1 className="text-3xl font font-semibold text-center my-7">About Sahand' Blog</h1>
           <div className="text-md text-gray-500 flex flex-col gap-6">
             <p>
-              Welcome to Boring Comedy Blog! This blog was created by Sahand Ghavidel as a personal project to share his thoughts and ideas with the
-              world. Sahand is a passionate developer who loves to write about technology, coding, and everything in between.
+              Welcome to Boring Comedy Blog! Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim obcaecati culpa nesciunt sunt asperiores
+              possimus ab delectus quaerat non mollitia nam molestias omnis tenetur ducimus debitis, ad, sed amet! Deserunt.
             </p>
 
             <p>
-              On this blog, you'll find weekly articles and tutorials on topics such as web development, software engineering, and programming
-              languages. Sahand is always learning and exploring new technologies, so be sure to check back often for new content!
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui, totam delectus sit veritatis illum vitae minus quidem eos libero ducimus,
+              ipsum enim odio eius. Ipsum tempore error perferendis quidem a minima veniam maxime consequatur sed debitis saepe ad officiis et
+              quisquam cum, amet voluptates dolores.
             </p>
 
             <p>
