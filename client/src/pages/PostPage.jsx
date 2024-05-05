@@ -51,16 +51,8 @@ export default function PostPage() {
     }
   }, []);
 
-  if (loading)
-    return (
-      <div className='flex justify-center items-center min-h-screen'>
-        <Spinner size='xl' />
-      </div>
-    );
-
-  // Update the document's head section with the meta tags
   useEffect(() => {
-    const updateMetaTags = () => {
+    if (post) {
       const ogTitle = post.title;
       const ogImage = post.image;
       const ogUrl = window.location.href;
@@ -88,11 +80,16 @@ export default function PostPage() {
           document.head.appendChild(newTag);
         }
       });
-    };
-
-    updateMetaTags();
+    }
   }, [post]);
 
+  if (loading)
+    return (
+      <div className='flex justify-center items-center min-h-screen'>
+        <Spinner size='xl' />
+      </div>
+    );
+  
   return (
     <main className='p-3 flex flex-col max-w-6xl mx-auto min-h-screen'>
       <h1 className='text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
@@ -124,7 +121,7 @@ export default function PostPage() {
       <div className='max-w-4xl mx-auto w-full'>
         <CallToAction />
       </div>
-      <CommentSection postId={post._id} />
+      <CommentSection postId={post && post._id} />
 
       <div className='flex flex-col justify-center items-center mb-5'>
         <h1 className='text-xl mt-5'>Recent articles</h1>
