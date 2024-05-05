@@ -27,7 +27,6 @@ export default function PostPage() {
           setPost(data.posts[0]);
           setLoading(false);
           setError(false);
-          updateMetaTags(data.posts[0]); // Update meta tags when post data is available
         }
       } catch (error) {
         setError(true);
@@ -52,43 +51,48 @@ export default function PostPage() {
     }
   }, []);
 
-  // Function to update meta tags
-  const updateMetaTags = (post) => {
-    const ogTitle = post.title;
-    const ogImage = post.image;
-    const ogUrl = window.location.href;
-    const ogHeight = 642;
-    const ogWidth = 1204;
-
-    const metaTags = [
-      { name: 'og:title', content: ogTitle },
-      { name: 'og:image', content: ogImage },
-      { name: 'og:url', content: ogUrl },
-      { name: 'og:image:height', content: ogHeight },
-      { name: 'og:image:width', content: ogWidth },
-      { name: 'og:site_name', content: "Boring Comedy" }
-      // Add more meta tags as needed
-    ];
-
-    metaTags.forEach(({ name, content }) => {
-      const existingTag = document.querySelector(`meta[property="${name}"]`);
-      if (existingTag) {
-        existingTag.setAttribute('content', content);
-      } else {
-        const newTag = document.createElement('meta');
-        newTag.setAttribute('property', name);
-        newTag.setAttribute('content', content);
-        document.head.appendChild(newTag);
-      }
-    });
-  };
-
   if (loading)
     return (
       <div className='flex justify-center items-center min-h-screen'>
         <Spinner size='xl' />
       </div>
     );
+
+  // Update the document's head section with the meta tags
+  useEffect(() => {
+    const updateMetaTags = () => {
+      const ogTitle = post.title;
+      const ogImage = post.image;
+      const ogUrl = window.location.href;
+      const ogHeight = 642;
+      const ogWidth = 1204;
+
+      const metaTags = [
+        { name: 'og:title', content: ogTitle },
+        { name: 'og:image', content: ogImage },
+        { name: 'og:url', content: ogUrl },
+        { name: 'og:image:height', content: ogHeight },
+        { name: 'og:image:width', content: ogWidth },
+        { name: 'og:site_name', content: "Boring Comedy" }
+        // Add more meta tags as needed
+      ];
+
+      metaTags.forEach(({ name, content }) => {
+        const existingTag = document.querySelector(`meta[property="${name}"]`);
+        if (existingTag) {
+          existingTag.setAttribute('content', content);
+        } else {
+          const newTag = document.createElement('meta');
+          newTag.setAttribute('property', name);
+          newTag.setAttribute('content', content);
+          document.head.appendChild(newTag);
+        }
+      });
+    };
+
+    updateMetaTags();
+  }, [post]);
+
   return (
     <main className='p-3 flex flex-col max-w-6xl mx-auto min-h-screen'>
       <h1 className='text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
