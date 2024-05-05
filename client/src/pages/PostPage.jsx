@@ -51,12 +51,45 @@ export default function PostPage() {
     }
   }, []);
 
+  useEffect(() => {
+    if (post) {
+      const ogTitle = post.title;
+      const ogImage = post.image;
+      const ogUrl = window.location.href;
+      const ogHeight = 642;
+      const ogWidth = 1204;
+
+      const metaTags = [
+        { name: 'og:title', content: ogTitle },
+        { name: 'og:image', content: ogImage },
+        { name: 'og:url', content: ogUrl },
+        { name: 'og:image:height', content: ogHeight },
+        { name: 'og:image:width', content: ogWidth },
+        { name: 'og:site_name', content: "Boring Comedy" }
+        // Add more meta tags as needed
+      ];
+
+      metaTags.forEach(({ name, content }) => {
+        const existingTag = document.querySelector(`meta[property="${name}"]`);
+        if (existingTag) {
+          existingTag.setAttribute('content', content);
+        } else {
+          const newTag = document.createElement('meta');
+          newTag.setAttribute('property', name);
+          newTag.setAttribute('content', content);
+          document.head.appendChild(newTag);
+        }
+      });
+    }
+  }, [post]);
+
   if (loading)
     return (
       <div className='flex justify-center items-center min-h-screen'>
         <Spinner size='xl' />
       </div>
     );
+  
   return (
     <main className='p-3 flex flex-col max-w-6xl mx-auto min-h-screen'>
       <h1 className='text-3xl mt-10 p-3 text-center font-serif max-w-2xl mx-auto lg:text-4xl'>
@@ -88,7 +121,7 @@ export default function PostPage() {
       <div className='max-w-4xl mx-auto w-full'>
         <CallToAction />
       </div>
-      <CommentSection postId={post._id} />
+      <CommentSection postId={post && post._id} />
 
       <div className='flex flex-col justify-center items-center mb-5'>
         <h1 className='text-xl mt-5'>Recent articles</h1>
