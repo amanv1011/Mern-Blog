@@ -57,11 +57,16 @@ export default function PostPage() {
     const ogTitle = post.title;
     const ogImage = post.image;
     const ogUrl = window.location.href;
+    const ogHeight = 642;
+    const ogWidth = 1204;
 
     const metaTags = [
       { name: 'og:title', content: ogTitle },
       { name: 'og:image', content: ogImage },
-      { name: 'og:url', content: ogUrl }
+      { name: 'og:url', content: ogUrl },
+      { name: 'og:image:height', content: ogHeight },
+      { name: 'og:image:width', content: ogWidth },
+      { name: 'og:site_name', content: "Boring Comedy" }
       // Add more meta tags as needed
     ];
 

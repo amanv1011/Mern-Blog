@@ -4,7 +4,7 @@ export default function PostCard({ post }) {
   // Function to handle sharing on Facebook
   const shareOnFacebook = () => {
     const postUrl = `https://www.facebook.com/sharer/sharer.php?u=https://boring-comedy.onrender.com/post/${post.slug}`;
-   
+    let facebook  = `https://boring-comedy.onrender.com/post/${post.slug}`
     window.open(postUrl, '_blank');
   };
 
