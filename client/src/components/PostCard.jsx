@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom';
 
 export default function PostCard({ post }) {
+  // Function to handle sharing on Facebook
+  const shareOnFacebook = () => {
+    const postUrl = `https://www.facebook.com/sharer/sharer.php?u=https://boring-comedy.onrender.com/post/${post.slug}`;
+   
+    window.open(postUrl, '_blank');
+  };
+
   return (
     <div className='group relative w-full border border-teal-500 hover:border-2 h-[400px] overflow-hidden rounded-lg sm:w-[430px] transition-all'>
       <Link to={`/post/${post.slug}`}>
@@ -19,6 +26,14 @@ export default function PostCard({ post }) {
         >
           Read article
         </Link>
+
+        {/* Button for sharing on Facebook */}
+        <button
+          style={{ color: 'green' }}
+          onClick={shareOnFacebook}
+        >
+          Share on Facebook
+        </button>
       </div>
     </div>
   );

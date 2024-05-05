@@ -40,14 +40,15 @@ export default function OAuth() {
   return (
     <>
       
-<LoginSocialFacebook 
-appId = "433322819300792"
-onResolve = {(res)=>handleGoogleClick(res)}
-// onResolve = {handleGoogleClick}
-onReject = {(err)=>{console.log("Getting error",err)}}
->
-<FaFacebook/>
-</LoginSocialFacebook>
+      <LoginSocialFacebook 
+    appId="433322819300792"
+    onResolve={(res) => handleGoogleClick(res)}
+    onReject={(err) => { console.log("Getting error", err) }}
+    className="flex items-center justify-center bg-pink-500 text-white rounded-md py-2 px-4 shadow hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+  >
+    <FaFacebook className="w-6 h-6 mr-2" />
+    Continue with Facebook
+  </LoginSocialFacebook>
 
     {/* <Button type="button" gradientDuoTone="pinkToOrange" outline onClick={handleGoogleClick}>
       <AiFillGoogleCircle className="w-6 h-6 mr-2" />

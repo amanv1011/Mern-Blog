@@ -27,6 +27,7 @@ export default function PostPage() {
           setPost(data.posts[0]);
           setLoading(false);
           setError(false);
+          updateMetaTags(data.posts[0]); // Update meta tags when post data is available
         }
       } catch (error) {
         setError(true);
@@ -50,6 +51,32 @@ export default function PostPage() {
       console.log(error.message);
     }
   }, []);
+
+  // Function to update meta tags
+  const updateMetaTags = (post) => {
+    const ogTitle = post.title;
+    const ogImage = post.image;
+    const ogUrl = window.location.href;
+
+    const metaTags = [
+      { name: 'og:title', content: ogTitle },
+      { name: 'og:image', content: ogImage },
+      { name: 'og:url', content: ogUrl }
+      // Add more meta tags as needed
+    ];
+
+    metaTags.forEach(({ name, content }) => {
+      const existingTag = document.querySelector(`meta[property="${name}"]`);
+      if (existingTag) {
+        existingTag.setAttribute('content', content);
+      } else {
+        const newTag = document.createElement('meta');
+        newTag.setAttribute('property', name);
+        newTag.setAttribute('content', content);
+        document.head.appendChild(newTag);
+      }
+    });
+  };
 
   if (loading)
     return (
